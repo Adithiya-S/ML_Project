@@ -178,23 +178,48 @@ export default function PredictTab({ onResult }) {
                   className="fixed inset-0 z-40"
                   onClick={() => setExampleOpen(false)}
                 />
-                <div className="absolute right-0 mt-2 w-72 bg-white rounded-lg shadow-elevated border border-surface-200 z-50 animate-fade-in overflow-hidden">
-                  <div className="px-3 py-2 border-b border-surface-100">
+                <div className="absolute right-0 mt-2 w-80 max-h-96 bg-white rounded-lg shadow-elevated border border-surface-200 z-50 animate-fade-in overflow-hidden flex flex-col">
+                  <div className="px-3 py-2 border-b border-surface-100 bg-surface-50 shrink-0 flex items-center justify-between">
                     <p className="text-xs text-slate-500 font-medium">
-                      Sample data — not real patients
+                      Sample WDBC Presets ({EXAMPLE_PATIENTS.length})
                     </p>
+                    <span className="text-[10px] text-slate-400">Click to load</span>
                   </div>
-                  {EXAMPLE_PATIENTS.map((ex) => (
-                    <button
-                      key={ex.name}
-                      type="button"
-                      className="w-full text-left px-4 py-3 hover:bg-surface-50 transition-colors border-b border-surface-100 last:border-b-0"
-                      onClick={() => loadExample(ex)}
-                    >
-                      <p className="text-sm font-medium text-slate-800">{ex.name}</p>
-                      <p className="text-xs text-slate-500 mt-0.5">{ex.description}</p>
-                    </button>
-                  ))}
+                  <div className="overflow-y-auto divide-y divide-surface-100">
+                    {EXAMPLE_PATIENTS.map((ex) => {
+                      const badgeClass =
+                        ex.type === "Benign"
+                          ? "bg-benign-50 text-benign-700 border-benign-200"
+                          : ex.type === "Malignant"
+                          ? "bg-malignant-50 text-malignant-700 border-malignant-200"
+                          : "bg-amber-50 text-amber-700 border-amber-200";
+
+                      return (
+                        <button
+                          key={ex.name}
+                          type="button"
+                          className="w-full text-left px-4 py-2.5 hover:bg-surface-50 transition-colors group"
+                          onClick={() => loadExample(ex)}
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <p className="text-sm font-medium text-slate-800 group-hover:text-medical-600 transition-colors">
+                              {ex.name}
+                            </p>
+                            {ex.type && (
+                              <span
+                                className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border uppercase tracking-wider shrink-0 ${badgeClass}`}
+                              >
+                                {ex.type}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">
+                            {ex.description}
+                          </p>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </>
             )}

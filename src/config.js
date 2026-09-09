@@ -111,9 +111,11 @@ export const FEATURE_MAP = Object.fromEntries(FEATURES.map((f) => [f.key, f]));
 // TODO: Replace these placeholder values with real examples from your trained model / dataset.
 // These should be actual or representative rows from the WDBC dataset.
 export const EXAMPLE_PATIENTS = [
+  // ── Benign Cases ──────────────────────────────────────────────────────────
   {
     name: "Typical Benign Case",
-    description: "Sample data — small, smooth, symmetric nuclei",
+    type: "Benign",
+    description: "Sample preset — small, smooth, symmetric nuclei",
     values: {
       // Mean features
       radius_mean: 12.25, texture_mean: 17.48, perimeter_mean: 78.27,
@@ -133,8 +135,55 @@ export const EXAMPLE_PATIENTS = [
     },
   },
   {
+    name: "Clear Low-Risk Benign",
+    type: "Benign",
+    description: "WDBC #864033 — very small, uniform cells with minimal indentation",
+    values: {
+      // Mean features
+      radius_mean: 9.777, texture_mean: 16.99, perimeter_mean: 62.50,
+      area_mean: 290.2, smoothness_mean: 0.1037, compactness_mean: 0.08404,
+      concavity_mean: 0.04334, concave_points_mean: 0.01778, symmetry_mean: 0.1584,
+      fractal_dimension_mean: 0.07065,
+      // SE features
+      radius_se: 0.4030, texture_se: 1.424, perimeter_se: 2.747,
+      area_se: 22.87, smoothness_se: 0.01385, compactness_se: 0.02932,
+      concavity_se: 0.02722, concave_points_se: 0.01023, symmetry_se: 0.03281,
+      fractal_dimension_se: 0.004638,
+      // Worst features
+      radius_worst: 11.05, texture_worst: 21.47, perimeter_worst: 71.68,
+      area_worst: 367.0, smoothness_worst: 0.1467, compactness_worst: 0.1765,
+      concavity_worst: 0.1300, concave_points_worst: 0.05334, symmetry_worst: 0.2533,
+      fractal_dimension_worst: 0.08468,
+    },
+  },
+  {
+    name: "Moderate Benign (Fibroadenoma)",
+    type: "Benign",
+    description: "WDBC #8510426 — moderate mass size with regular, benign margins",
+    values: {
+      // Mean features
+      radius_mean: 13.54, texture_mean: 14.36, perimeter_mean: 87.46,
+      area_mean: 566.3, smoothness_mean: 0.09779, compactness_mean: 0.08129,
+      concavity_mean: 0.06664, concave_points_mean: 0.04781, symmetry_mean: 0.1885,
+      fractal_dimension_mean: 0.05766,
+      // SE features
+      radius_se: 0.2699, texture_se: 0.7886, perimeter_se: 2.058,
+      area_se: 23.56, smoothness_se: 0.008462, compactness_se: 0.01460,
+      concavity_se: 0.02387, concave_points_se: 0.01315, symmetry_se: 0.01980,
+      fractal_dimension_se: 0.002300,
+      // Worst features
+      radius_worst: 15.11, texture_worst: 19.26, perimeter_worst: 99.70,
+      area_worst: 711.2, smoothness_worst: 0.1440, compactness_worst: 0.1773,
+      concavity_worst: 0.2390, concave_points_worst: 0.1288, symmetry_worst: 0.2977,
+      fractal_dimension_worst: 0.07259,
+    },
+  },
+
+  // ── Malignant Cases ───────────────────────────────────────────────────────
+  {
     name: "Typical Malignant Case",
-    description: "Sample data — large, irregular, highly concave nuclei",
+    type: "Malignant",
+    description: "Sample preset — large, irregular, highly concave nuclei",
     values: {
       // Mean features
       radius_mean: 19.81, texture_mean: 22.15, perimeter_mean: 130.0,
@@ -154,8 +203,55 @@ export const EXAMPLE_PATIENTS = [
     },
   },
   {
+    name: "Early / Subtle Malignant",
+    type: "Malignant",
+    description: "WDBC #87556202 — moderately enlarged perimeter with elevated concavity",
+    values: {
+      // Mean features
+      radius_mean: 14.86, texture_mean: 23.21, perimeter_mean: 100.4,
+      area_mean: 671.4, smoothness_mean: 0.1044, compactness_mean: 0.1980,
+      concavity_mean: 0.1697, concave_points_mean: 0.08878, symmetry_mean: 0.1737,
+      fractal_dimension_mean: 0.06672,
+      // SE features
+      radius_se: 0.2796, texture_se: 0.9622, perimeter_se: 3.591,
+      area_se: 25.20, smoothness_se: 0.008081, compactness_se: 0.05122,
+      concavity_se: 0.05551, concave_points_se: 0.01883, symmetry_se: 0.02545,
+      fractal_dimension_se: 0.004312,
+      // Worst features
+      radius_worst: 16.08, texture_worst: 27.78, perimeter_worst: 118.6,
+      area_worst: 784.7, smoothness_worst: 0.1316, compactness_worst: 0.4648,
+      concavity_worst: 0.4589, concave_points_worst: 0.1727, symmetry_worst: 0.3000,
+      fractal_dimension_worst: 0.08701,
+    },
+  },
+  {
+    name: "Advanced High-Grade Malignant",
+    type: "Malignant",
+    description: "WDBC #88649001 — pronounced nuclear pleomorphism & large irregular contour",
+    values: {
+      // Mean features
+      radius_mean: 19.55, texture_mean: 28.77, perimeter_mean: 133.6,
+      area_mean: 1207.0, smoothness_mean: 0.0926, compactness_mean: 0.2063,
+      concavity_mean: 0.1784, concave_points_mean: 0.1144, symmetry_mean: 0.1893,
+      fractal_dimension_mean: 0.06232,
+      // SE features
+      radius_se: 0.8426, texture_se: 1.199, perimeter_se: 7.158,
+      area_se: 106.4, smoothness_se: 0.006356, compactness_se: 0.04765,
+      concavity_se: 0.03863, concave_points_se: 0.01519, symmetry_se: 0.01936,
+      fractal_dimension_se: 0.005252,
+      // Worst features
+      radius_worst: 25.05, texture_worst: 36.27, perimeter_worst: 178.6,
+      area_worst: 1926.0, smoothness_worst: 0.1281, compactness_worst: 0.5329,
+      concavity_worst: 0.4251, concave_points_worst: 0.1941, symmetry_worst: 0.2818,
+      fractal_dimension_worst: 0.1005,
+    },
+  },
+
+  // ── Borderline Cases ──────────────────────────────────────────────────────
+  {
     name: "Borderline Case",
-    description: "Sample data — intermediate measurements, near the decision boundary",
+    type: "Borderline",
+    description: "Sample preset — intermediate measurements, near the decision boundary",
     values: {
       // Mean features
       radius_mean: 13.71, texture_mean: 20.83, perimeter_mean: 90.20,
@@ -172,6 +268,50 @@ export const EXAMPLE_PATIENTS = [
       area_worst: 819.7, smoothness_worst: 0.1528, compactness_worst: 0.3179,
       concavity_worst: 0.2846, concave_points_worst: 0.1400, symmetry_worst: 0.3057,
       fractal_dimension_worst: 0.0840,
+    },
+  },
+  {
+    name: "Equivocal Borderline (p ≈ 50%)",
+    type: "Borderline",
+    description: "WDBC #9112085 — right on the 0.5 boundary with elevated nuclear texture",
+    values: {
+      // Mean features
+      radius_mean: 13.38, texture_mean: 30.72, perimeter_mean: 86.34,
+      area_mean: 557.2, smoothness_mean: 0.09245, compactness_mean: 0.07426,
+      concavity_mean: 0.02819, concave_points_mean: 0.03264, symmetry_mean: 0.1375,
+      fractal_dimension_mean: 0.06016,
+      // SE features
+      radius_se: 0.3408, texture_se: 1.924, perimeter_se: 2.287,
+      area_se: 28.93, smoothness_se: 0.005841, compactness_se: 0.01246,
+      concavity_se: 0.007936, concave_points_se: 0.009128, symmetry_se: 0.01564,
+      fractal_dimension_se: 0.002985,
+      // Worst features
+      radius_worst: 15.05, texture_worst: 41.61, perimeter_worst: 96.69,
+      area_worst: 705.6, smoothness_worst: 0.1172, compactness_worst: 0.1421,
+      concavity_worst: 0.07003, concave_points_worst: 0.07763, symmetry_worst: 0.2196,
+      fractal_dimension_worst: 0.07675,
+    },
+  },
+  {
+    name: "Suspicious Atypical Borderline",
+    type: "Borderline",
+    description: "WDBC #879523 — overlapping morphological features near decision threshold",
+    values: {
+      // Mean features
+      radius_mean: 15.12, texture_mean: 16.68, perimeter_mean: 98.78,
+      area_mean: 716.6, smoothness_mean: 0.08876, compactness_mean: 0.09588,
+      concavity_mean: 0.0755, concave_points_mean: 0.04079, symmetry_mean: 0.1594,
+      fractal_dimension_mean: 0.05986,
+      // SE features
+      radius_se: 0.2711, texture_se: 0.3621, perimeter_se: 1.974,
+      area_se: 26.44, smoothness_se: 0.005472, compactness_se: 0.01919,
+      concavity_se: 0.02039, concave_points_se: 0.00826, symmetry_se: 0.01523,
+      fractal_dimension_se: 0.002881,
+      // Worst features
+      radius_worst: 17.77, texture_worst: 20.24, perimeter_worst: 117.7,
+      area_worst: 989.5, smoothness_worst: 0.1491, compactness_worst: 0.3331,
+      concavity_worst: 0.3327, concave_points_worst: 0.1252, symmetry_worst: 0.3415,
+      fractal_dimension_worst: 0.0974,
     },
   },
 ];
